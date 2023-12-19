@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class UserServlet extends HttpServlet {
 
@@ -19,13 +20,14 @@ public class UserServlet extends HttpServlet {
      * */
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 获取请求中的键值对参数 key=value
+        // 获取请求中的键值对参数 key=value,无论参数是在url?后，还是在请求体中，均可通过getParameter方法获取
         String username = req.getParameter("username");
         String info = "NO";
         if ("xatu".equals(username)) {
             info = "YES";
         }
         //通过响应对象响应信息
-        resp.getWriter().write(info);
+        PrintWriter printWriter = resp.getWriter(); // 该方法返回的是一个响应体中打印字符串的 打印流
+        printWriter.write(info);
     }
 }
