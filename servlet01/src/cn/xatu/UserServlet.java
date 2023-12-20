@@ -22,10 +22,12 @@ public class UserServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 获取请求中的键值对参数 key=value,无论参数是在url?后，还是在请求体中，均可通过getParameter方法获取
         String username = req.getParameter("username");
-        String info = "NO";
+        String info = "<h1>NO</h1>";
         if ("xatu".equals(username)) {
-            info = "YES";
+            info = "<h1>YES</h1>";
         }
+        // setContentType特别重要，需要给响应头设置数据类型，以便浏览器解析。
+        resp.setContentType("text/html");
         //通过响应对象响应信息
         PrintWriter printWriter = resp.getWriter(); // 该方法返回的是一个响应体中打印字符串的 打印流
         printWriter.write(info);
