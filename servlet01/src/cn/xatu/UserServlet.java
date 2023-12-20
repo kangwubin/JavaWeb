@@ -17,6 +17,9 @@ public class UserServlet extends HttpServlet {
      * HttpServletResponse 代表响应对象,该对象会被tomcat转换为响应的报文,通过该对象可以设置响应中的信息
      * Servlet对象的生命周期(创建,初始化,处理服务,销毁)是由tomcat管理的,无需我们自己new
      * HttpServletRequest HttpServletResponse 两个对象也是有tomcat负责转换,在调用service方法时传入给我们用的
+     *
+     * 1.servlet-api.jar,在编译构建项目的时候需要；在运行时不需要，因为项目在Tomcat容器中，Tomcat中已经存在servlet-api.jar。
+     * 2.contentType响应头问题：需要服务端告诉客户端，返回的数据是什么格式，客户端才能解析
      * */
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
